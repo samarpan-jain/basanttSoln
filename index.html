@@ -283,8 +283,8 @@ Our motto 'CONSULT, MARKET, AND GROW' is more than just a motto; it inspires us 
                 })
                 .then(res => res.text())
 				.then(() => { submitSuccess.style.display = 'block'; submitError.style.display = null;
-							  form.reset() 
-							})
+					      form.reset() 
+					    })
 				.catch((error) => { submitError.style.display = 'block'; submitSuccess.style.display = null; });
         })
     </script>
