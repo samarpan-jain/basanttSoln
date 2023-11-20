@@ -252,3 +252,11 @@ h6,
 .blog-item:hover img {
     transform: scale(1.1);
 }
+
+/********** Contact form Submit Button **********/
+.submit-success, .submit-error {
+    display: none;
+    padding-top: 2.5%;
+    width:60%;
+    margin:auto;
+}
