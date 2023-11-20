@@ -223,39 +223,41 @@ Our motto 'CONSULT, MARKET, AND GROW' is more than just a motto; it inspires us 
 	<!-- Contact Start -->
     <div class="container-fluid px-5" id="contact">
         <div class="row g-0">
-            <div class="col-lg-12 py-6 px-5">
+            <div class="col-lg-12 py-5">
                 <h1 class="display-5 mb-4">Contact For Any Queries</h1>
-                <form>
+                <form autocomplete="off">
                     <div class="row g-3">
                         <div class="col-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="form-floating-1" placeholder="Enter your name">
+							<div class="form-floating">
+                                <input type="text" class="form-control" name="name" id="form-floating-1" placeholder="Enter your name"  required>
                                 <label for="form-floating-1">Full Name</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="form-floating-2" placeholder="Enter your e-mail">
+                                <input type="email" class="form-control" name="email" id="form-floating-2" placeholder="Enter your e-mail" required>
                                 <label for="form-floating-2">Email address</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="form-floating-3" placeholder="Enter the subject">
+                                <input type="text" class="form-control" name="subject" id="form-floating-3" placeholder="Enter the subject" required>
                                 <label for="form-floating-3">Subject</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Enter the Message" id="form-floating-4" style="height: 150px"></textarea>
+                                <textarea class="form-control" placeholder="Enter the Message" name="message" id="form-floating-4" style="height: 150px" required></textarea>
                                 <label for="form-floating-4">Message</label>
                               </div>
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
                         </div>
-                    </div>
+                    </div>                          
                 </form>
+				<div class="submit-success"><p style="color:green;font-weight:bold;">We have got your query successfully. Please be patient we will contact you soon.</p></div>
+				<div class="submit-error"><p style="color:red;font-weight:bold;">Error, Please try again after some time.</p></div>  
             </div>
             <!-- <div class="col-lg-6" style="min-height: 400px;"> -->
                 <!-- <div class="position-relative h-100"> -->
@@ -268,7 +270,25 @@ Our motto 'CONSULT, MARKET, AND GROW' is more than just a motto; it inspires us 
     </div>
     <!-- Contact End -->
 
-
+	<script>
+		const submitSuccess = document.querySelector('.submit-success')
+		const submitError = document.querySelector('.submit-error')
+		let form = document.querySelector("form");
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let data = new FormData(form);
+            fetch('https://script.google.com/macros/s/AKfycbx39i2s4_qRMC1Cz5OTs4hTZ1kd84jrQvm6JsgXHN_CNFv-eACL86DJi6VI3aXrMxg9/exec', {
+                    method: "POST",
+                    body: data
+                })
+                .then(res => res.text())
+				.then(() => { submitSuccess.style.display = 'block'; submitError.style.display = null;
+							  form.reset() 
+							})
+				.catch((error) => { submitError.style.display = 'block'; submitSuccess.style.display = null; });
+        })
+    </script>
+	</script>
 
     <!-- <!-- Features Start -->
     <!-- <div class="container-fluid py-6 px-5"> -->
